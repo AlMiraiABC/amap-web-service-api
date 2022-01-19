@@ -1,6 +1,4 @@
 
-from email.mime import base
-from typing import Dict
 import requests
 import json
 from conf import GaoDeConf
@@ -15,13 +13,14 @@ class GaoDe:
         url = self.base_url+path
         params = {
             "key": self.key
-        }.update(ps)
+        }
+        params.update(ps)
         response = requests.get(
             url=url, params=params,
             verify=False
         )
         if response.status_code == 200:
-            return response.content
+            return response.text
 
     def ip(self, ip: str):
         path = "/ip"
@@ -34,22 +33,9 @@ class GaoDe:
         path = "/geocode/regeo"
         params = {
             "output": "json",
-            "location": f"{lat},{lon}"
+            "location": f"{lon},{lat}"
         }
-        content = self.__basereq(path, params)
-        resp = json.loads(content)
-        # print(type(resp))
-        result = resp["regeocode"]["addressComponent"]
-        dic = {}
-        dic["country"] = result["country"]
-        dic["province"] = result["province"]
-        dic["city"] = result["city"]
-        dic["citycode"] = result["citycode"]
-        dic["district"] = result["district"]
-        dic["adcode"] = result["adcode"]
-        dic["township"] = result["township"]
-        dic["towncode"] = result["towncode"]
-        return json.dumps(dic)
+        return self.__basereq(path, params)
 
     def baseWeatherInfo(self, city: str) -> str:
         return self.__weather(city, 'base')
