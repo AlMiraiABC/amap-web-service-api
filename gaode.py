@@ -1,15 +1,37 @@
 
 import requests
-import json
-from conf import GaoDeConf
+from conf import BASE_URL, ACCESS_KEY
 
 
 class GaoDe:
-    def __init__(self, base_url: str = GaoDeConf["BASE_URL"], key=GaoDeConf["KEY"]) -> None:
+    """
+    Amap web service APIs
+
+    See
+    ----------
+    - Usage: https://lbs.amap.com/api/webservice/summary
+    - ErrCode: https://lbs.amap.com/api/webservice/guide/tools/info
+    """
+
+    def __init__(self, base_url: str = BASE_URL, key=ACCESS_KEY) -> None:
+        """
+        Create a :class:`GaoDe` instance with specified configs.
+
+        :param base_url: Root url for all requests, use `GaoDeConf.BASE_URL` by default.
+        :param key: API access key, use `GaoDeConf.KEY` by default.
+        """
         self.base_url = base_url
         self.key = key
 
     def __basereq(self, path: str, ps: dict) -> str:
+        """
+        Send a request to :param:`path` with params merged in :param:`ps`
+
+        :param path: Relative url path of `base_url`
+        :param ps: Request params, will be merged in default params
+
+        :return: Response if status_code is `200` or else None.
+        """
         url = self.base_url+path
         params = {
             "key": self.key
@@ -23,6 +45,13 @@ class GaoDe:
             return response.text
 
     def ip(self, ip: str):
+        """
+        Get location from :param:`ip`
+
+        See
+        -------------
+        https://lbs.amap.com/api/webservice/guide/api/ipconfig#ip
+        """
         path = "/ip"
         params = {
             "ip": ip
@@ -30,6 +59,13 @@ class GaoDe:
         return self.__basereq(path, params)
 
     def regeo(self, lat: float, lon: float):
+        """
+        Get location from latitude and longitude
+
+        See
+        ----------
+        https://lbs.amap.com/api/webservice/guide/api/georegeo/#regeo
+        """
         path = "/geocode/regeo"
         params = {
             "output": "json",
