@@ -1,3 +1,6 @@
+"""
+author: mousecode, almirai
+"""
 
 import requests
 from conf import BASE_URL, ACCESS_KEY
