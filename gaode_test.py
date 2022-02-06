@@ -30,6 +30,11 @@ class GaoDeTest(TestCase):
         print(content)
         self.__success(content)
 
+    def test_allWeatherInfo(self):
+        content = self.gaode.allWeatherInfo(city)
+        print(content)
+        self.__success(content)
+
     def __success(self, content):
         c = json.loads(content)
         self.assertEquals('1', c['status'])
