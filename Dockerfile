@@ -1,5 +1,5 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
-FROM nmtsoft-docker.pkg.coding.net/images/python/python:3.8.12-alpine-git
+FROM almirai/python:3.8.12-alpine
 
 # Install pip requirements
 COPY requirements.txt .
