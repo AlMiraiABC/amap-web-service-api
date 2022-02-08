@@ -1,7 +1,7 @@
 from unittest import TestCase
 import json
 
-from gaode import GaoDe
+from amap_api.web_service import WebService
 
 ip = "114.247.50.2"
 lat = "39.91488908"
@@ -9,29 +9,29 @@ lon = "116.40387397"
 city = "110101"
 
 
-class GaoDeTest(TestCase):
+class WebServiceTest(TestCase):
 
     def setUp(self) -> None:
-        self.gaode = GaoDe()
+        self.ws = WebService()
         return super().setUp()
 
     def test_ip(self):
-        content = self.gaode.ip(ip)
+        content = self.ws.ip(ip)
         print(content)
         self.__success(content)
 
     def test_regeo(self):
-        content = self.gaode.regeo(lat, lon)
+        content = self.ws.regeo(lat, lon)
         print(content)
         self.__success(content)
 
-    def test_baseWeatherInfo(self):
-        content = self.gaode.baseWeatherInfo(city)
+    def test_weather_actual(self):
+        content = self.ws.weather_actual(city)
         print(content)
         self.__success(content)
 
-    def test_allWeatherInfo(self):
-        content = self.gaode.allWeatherInfo(city)
+    def test_weather_forecast(self):
+        content = self.ws.weather_forecast(city)
         print(content)
         self.__success(content)
 
