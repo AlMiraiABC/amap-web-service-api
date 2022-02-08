@@ -1,5 +1,7 @@
 # Amap Web Service API
 
+[![CircleCI](https://circleci.com/gh/AlMiraiABC/amap-web-service-api/tree/master.svg?style=svg)](https://circleci.com/gh/AlMiraiABC/amap-web-service-api/tree/master)
+
 API wrapper for [amap web service](https://lbs.amap.com/api/webservice/summary)
 
 ## Supported
