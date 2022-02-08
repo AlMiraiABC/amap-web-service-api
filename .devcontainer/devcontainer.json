@@ -35,14 +35,15 @@
 		"redhat.vscode-xml",
 		"redhat.vscode-yaml",
 		"ms-ceintl.vscode-language-pack-zh-hans",
-		"vivaxy.vscode-conventional-commits"
+		"vivaxy.vscode-conventional-commits",
+		"ryanluker.vscode-coverage-gutters"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	"postCreateCommand": "pip install -i https://pypi.tuna.tsinghua.edu.cn/simple autopep8",
+	"postCreateCommand": "pip install -i https://pypi.tuna.tsinghua.edu.cn/simple autopep8 coverage",
 
 	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
 	"runArgs": [ "--env-file", ".env" ],

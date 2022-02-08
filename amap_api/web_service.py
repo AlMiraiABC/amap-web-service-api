@@ -6,7 +6,7 @@ import requests
 from conf import BASE_URL, ACCESS_KEY
 
 
-class GaoDe:
+class WebService:
     """
     Amap web service APIs
 
@@ -76,10 +76,26 @@ class GaoDe:
         }
         return self.__basereq(path, params)
 
-    def baseWeatherInfo(self, city: str) -> str:
+    def weather_actual(self, city: str) -> str:
+        """
+        Get current actual weather info.
+
+        See
+        --------------
+        https://lbs.amap.com/api/webservice/guide/api/weatherinfo
+        when `extensions=base`
+        """
         return self.__weather(city, 'base')
 
-    def allWeatherInfo(self, city: str) -> str:
+    def weather_forecast(self, city: str) -> str:
+        """
+        Get weather forcast for next 3 days.
+
+        See
+        --------------
+        https://lbs.amap.com/api/webservice/guide/api/weatherinfo
+        when `extensions=all`
+        """
         return self.__weather(city, 'all')
 
     def __weather(self, city: str, ext: str):
